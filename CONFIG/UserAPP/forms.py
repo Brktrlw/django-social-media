@@ -20,4 +20,7 @@ class FormUserCreate(UserCreationForm):
         self.fields["last_name"].widget=forms.TextInput(attrs={"class":"form-control form-control-user","placeholder":"Soy isim"})
         self.fields["username"].widget=forms.TextInput(attrs={"class":"form-control form-control-user","placeholder":"Kullanıcı Adı"})
         self.fields["email"].widget=forms.EmailInput(attrs={"class":"form-control form-control-user","placeholder":"Email adresi"})
+        self.fields["password1"].widget=forms.PasswordInput(attrs={"class":"form-control form-control-user","placeholder":"Parola"})
+        self.fields["password2"].widget=forms.PasswordInput(attrs={"class":"form-control form-control-user","placeholder":"Parola Tekrarı"})
+        self.fields["profilePhoto"].widget=forms.FileInput(attrs={"class":"form-control form-control-user","id":"uploadfile","style":"display:none"})
 

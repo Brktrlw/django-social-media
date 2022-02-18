@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render,redirect
 from django.views import View
 from .forms import FormUserCreate
+from django.contrib.auth.views import auth_logout
 
 class LoginView(View):
     """
@@ -28,15 +29,27 @@ class RegisterView(View):
     Kayıt olurken kullandığımız view
     """
     http_method_names = ["get","post"]
-    def get(self,request):
-        form=FormUserCreate()
-        return render(request,"register.html",{"form":form})
-    def post(self,request):
-        username=request.POST.get("username")
-        password=request.POST.get("password")
-        repassword=request.POST.get("repassword")
-        surname= request.POST.get("surname")
-        lastname= request.POST.get("lastname")
-        profilePhoto=request.FILES.get("profilePhoto")
+    form = FormUserCreate()
 
-        return render(request,"register.html")
+    def get(self,request):
+        return render(request,"register.html",{"form":self.form})
+    def post(self,request):
+        form = FormUserCreate(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            username=form.cleaned_data.get("username")
+            password=form.cleaned_data.get("password")
+            user=authenticate(username=username,password=password)
+            login(request,user)
+            return redirect("url_homepage")
+        else:
+            for i in range(0,len(form.errors.values())):
+                messages.error(request,list(form.errors.values())[i])
+            return render(request,"register.html",{"form":self.form})
+
+class LogoutView(View):
+    http_method_names = ["post"]
+    def post(self,request):
+        auth_logout(request)
+        return redirect("url_homepage")
+
