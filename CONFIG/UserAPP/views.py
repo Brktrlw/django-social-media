@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render,redirect
 from django.views import View
 from .forms import FormUserCreate
-from django.contrib.auth.views import auth_logout
+from django.contrib.auth import logout
 
 class LoginView(View):
     """
@@ -48,8 +48,8 @@ class RegisterView(View):
             return render(request,"register.html",{"form":self.form})
 
 class LogoutView(View):
-    http_method_names = ["post"]
-    def post(self,request):
-        auth_logout(request)
+    http_method_names = ["get"]
+    def get(self,request):
+        logout(request)
         return redirect("url_homepage")
 

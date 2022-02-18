@@ -1,0 +1,27 @@
+   <div class="card shadow mb-4">
+        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+         <h6 class="m-0 font-weight-bold text-primary text-center">Gönderi Paylaş</h6>
+        </a>
+      <div class="collapse show" id="collapseCardExample">
+      <div class="card-body">
+         <form action="{% url 'url_createpost' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.title }}
+            {{ form.description }}
+            <label>Kategoriler</label>
+            {{ form.categories }}
+            <span class="text">Fotoğraf Yükle</span>
+            <div class="input-group mb-3">
+               <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Görsel Yükle</span>
+               </div>
+               <div class="custom-file">
+                  {{ form.image }}
+                  <label class="custom-file-label" for="inputGroupFile01">Dosya Seç</label>
+               </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-icon-split btn-block" style="margin-top: 1%"><span class="text">Gönderi Paylaş</span></button>
+         </form>
+      </div>
+     </div>
+   </div>

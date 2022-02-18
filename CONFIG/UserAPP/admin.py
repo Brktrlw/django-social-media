@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import ModelUser
 from django.contrib.auth.admin import UserAdmin
-from PostAPP.models import ModelPost
+from PostAPP.models import ModelPost,ModelCategory
 from CommentAPP.models import ModelComment
 
 class CustomAdmin(UserAdmin):
@@ -15,6 +15,7 @@ class CustomAdmin(UserAdmin):
 admin.site.register(ModelUser,CustomAdmin)
 admin.site.register(ModelPost)
 admin.site.register(ModelComment)
+admin.site.register(ModelCategory)
 
 
 

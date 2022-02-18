@@ -1,63 +1,40 @@
 {% extends 'includes/base.html' %}
 {% load static %}
 {% block content %}
+
+
+
+
+
 <div class="container">
-   <div class="card shadow mb-4">
-      <!-- Card Header - Dropdown -->
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-         <h6 class="m-0 font-weight-bold text-primary">Gönderi Paylaş</h6>
-         <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
-               <div class="dropdown-header">Dropdown Header:</div>
-               <a class="dropdown-item" href="#">Action</a>
-               <a class="dropdown-item" href="#">Another action</a>
-               <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-         </div>
-      </div>
-      <!-- Card Body -->
-      <div class="card-body">
-         <input type="text" class="form-control bg-light border-0 small" placeholder="Başlık">
-         <textarea class="form-control bg-light border-0 small" placeholder="İçerik" style="margin-top: 1%"></textarea>
-         <label>Kategoriler</label>
-         <select multiple class="custom-select">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-         </select>
-         <input type="file" class="form-control form-control-user" id="uploadpostfile" style="display:none">
-         <a id="upload_post" class="btn btn-info btn-icon-split btn-block" style="margin-top: 1%">
-         <span class="text">Fotoğraf Yükle</span>
-         </a>
-         <a href="#" class="btn btn-success btn-icon-split btn-block" style="margin-top: 1%"><span class="text">Gönderi Paylaş</span></a>
-      </div>
-   </div>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+        </div>
+    {% endfor %}
+{% endif %}
+   {% if user.is_authenticated %}
+       {% include 'postshtml/sharePost.html' %}
+   {% else %}
+       {% include 'postshtml/ananymousUserAlert.html' %}
+   {% endif %}
+    <!-- POSTLARIN BASLANGICI-->
+    {% for post in posts %}
+        {% if post.image %}
+            {% include 'postshtml/postwithImage.html' %}
+        {% else %}
+           {% include 'postshtml/postwithImage.html' %}
+        {% endif %}
+    {% endfor %}
+
+    <!-- POSTLARIN BİTİŞİ-->
+
 </div>
+    {% include 'includes/logoutModal.html' %}
 
 
-
-    <br>
-    
-{% block JS %}
-<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
-<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-<script>
-   $(function(){
-       $("#upload_post").on('click', function(e){
-           e.preventDefault();
-           $("#uploadpostfile:hidden").trigger('click');
-       });
-   });
-</script>
-{% endblock %}
 {% endblock %}
