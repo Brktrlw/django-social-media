@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #my app
     'PAGESAPP',
+    'PostAPP',
     'UserAPP',
+    'CommentAPP',
     #other app
     'django_cleanup'
 ]
