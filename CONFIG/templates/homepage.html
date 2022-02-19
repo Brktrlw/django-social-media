@@ -2,10 +2,6 @@
 {% load static %}
 {% block content %}
 
-
-
-
-
 <div class="container">
     {% if messages %}
     {% for message in messages %}
@@ -22,19 +18,24 @@
    {% else %}
        {% include 'postshtml/ananymousUserAlert.html' %}
    {% endif %}
+
     <!-- POSTLARIN BASLANGICI-->
-    {% for post in posts %}
-        {% if post.image %}
+
+        {% for post in posts %}
+            <div class="deneme" style="display: inline;">
             {% include 'postshtml/postwithImage.html' %}
-        {% else %}
-           {% include 'postshtml/postwithImage.html' %}
-        {% endif %}
-    {% endfor %}
+            {% empty %}
+            hiç post yok
+            </div>
+         {% endfor %}
 
     <!-- POSTLARIN BİTİŞİ-->
 
 </div>
+
     {% include 'includes/logoutModal.html' %}
+
+
 
 
 {% endblock %}

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     #my app
     'PAGESAPP',
     'PostAPP',
+    'FollowAPP',
+    'LikeAPP',
     'UserAPP',
     'CommentAPP',
     #other app

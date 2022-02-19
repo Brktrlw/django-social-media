@@ -6,12 +6,8 @@
       <div class="card-body">
          <form action="{% url 'url_createpost' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.title }}
             {{ form.description }}
-            <label>Kategoriler</label>
-            {{ form.categories }}
-            <span class="text">Fotoğraf Yükle</span>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 pt-3">
                <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupFileAddon01">Görsel Yükle</span>
                </div>

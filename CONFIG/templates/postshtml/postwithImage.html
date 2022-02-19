@@ -1,23 +1,28 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-<section class="hero">
   <div class="row" >
    <div class="col-lg-6 offset-lg-3">
 	<div class="cardbox shadow-lg bg-white" >
 	 <div class="cardbox-heading" >
 	  <div class="dropdown float-right" >
+          {% if post.user == user %}
 	   <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
 		<em class="fa fa-ellipsis-h" ></em>
 	   </button>
 	   <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-		<a class="dropdown-item" href="#">Hide post</a>
-		<a class="dropdown-item" href="#">Stop following</a>
-		<a class="dropdown-item" href="#">Report</a>
+		<a class="dropdown-item" href="{% url 'url_deletepost' post.slug %}">Gönderiyi Sil</a>
 	   </div>
+        {% endif %}
 	  </div><!--/ dropdown -->
 	  <div class="media m-0" >
 	   <div class="d-flex mr-3" >
-		<a href="user/{{ post.user.username }}"><img class="img-fluid rounded-circle" src="{{ post.user.profilePhoto.url }}" alt="User"></a>
+		<a href="user/{{ post.user.username }}">
+            {% if  post.user.profilePhoto %}
+               <img class="img-fluid rounded-circle" src="{{ post.user.profilePhoto.url }}" alt="User">
+            {% else %}
+               <img class="img-fluid rounded-circle" src="https://admin.universcitiz.com/images/default-pp.png" alt="User">
+            {% endif %}
+        </a>
 	   </div>
 	   <div class="media-body" >
 	    <p class="m-0"><a href="user/{{ post.user.username }}">{{ post.user.username }}</a></p>
@@ -26,9 +31,11 @@
 	   </div>
 	  </div><!--/ media -->
 	 </div><!--/ cardbox-heading -->
-        <div class="p-2">{{ post.title }}</div>
+        <div class="p-2">{{ post.description }}</div>
 	 <div class="cardbox-item" >
-	  <img class="img-fluid" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg" alt="Image">
+         {% if post.image %}
+             <img class="img-fluid" src="{{ post.image.url }}" alt="Image">
+         {% endif %}
 	 </div><!--/ cardbox-item -->
 	 <div class="cardbox-base">
 	  <ul class="float-right">
@@ -46,7 +53,6 @@
 	   <li><a><span>242 Likes</span></a></li>
 	  </ul>
 	 </div><!--/ cardbox-base -->
-        <div class="p-2">{{ post.description }}</div>
         <div class="cardbox-comments">
 	  <span class="comment-avatar float-left">
 	   <a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="..."></a>
@@ -63,4 +69,6 @@
    </div><!--/ col-lg-3 -->
 
   </div><!--/ row -->
-</section>
+
+
+

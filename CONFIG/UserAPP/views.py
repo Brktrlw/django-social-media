@@ -4,7 +4,6 @@ from django.shortcuts import render,redirect
 from django.views import View
 from .forms import FormUserCreate
 from django.contrib.auth import logout
-
 class LoginView(View):
     """
     Giriş yaparken kullandığımız view
