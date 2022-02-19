@@ -1,0 +1,9 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+    <div class="container">
+    {% for kullanici in followingUser %}
+        {{ kullanici.get_follower_username }}
+    {% endfor %}
+
+    </div>
+{% endblock %}

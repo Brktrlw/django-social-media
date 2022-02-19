@@ -26,8 +26,8 @@
 	   </div>
 	   <div class="media-body" >
 	    <p class="m-0"><a href="user/{{ post.user.username }}">{{ post.user.username }}</a></p>
-		<small><span><i class="icon ion-md-pin"></i> {{ post.user.get_full_name|title }}</span></small>
-		<small><span><i class="icon ion-md-time"></i>{{ post.createdDate|timesince }} önce</span></small>
+		<small><i class="icon ion-md-pin"></i> {{ post.user.get_full_name|title }}</small>
+		<small><i class="icon ion-md-time"></i>{{ post.createdDate|timesince }} önce</small>
 	   </div>
 	  </div><!--/ media -->
 	 </div><!--/ cardbox-heading -->

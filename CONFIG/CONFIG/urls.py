@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("PAGESAPP.urls")),
     path("user/",include("UserAPP.urls")),
-    path("post/",include("PostAPP.urls"))
+    path("post/",include("PostAPP.urls")),
+    path("follows/",include("FollowAPP.urls"))
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

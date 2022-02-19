@@ -15,27 +15,32 @@
 {% endif %}
    {% if user.is_authenticated %}
        {% include 'postshtml/sharePost.html' %}
+         {% for post in posts %}
+            <div class="deneme" style="display: inline;">
+            {% include 'postshtml/postwithImage.html' %}
+            {% empty %}
+            <div class="card shadow mb-4">
+                     <div class="card-header py-3">
+                         <h6 class="m-0 font-weight-bold text-danger text-center">Maalesef Hiç Gönderi Yok!</h6>
+                     </div>
+                     <div class="card-body text-center">
+                         Ana sayfanda hiç gönderi yok. Birilerini takip et ya da gönderi paylaş.
+                     </div>
+            </div>
+            </div>
+         {% endfor %}
    {% else %}
        {% include 'postshtml/ananymousUserAlert.html' %}
    {% endif %}
 
     <!-- POSTLARIN BASLANGICI-->
 
-        {% for post in posts %}
-            <div class="deneme" style="display: inline;">
-            {% include 'postshtml/postwithImage.html' %}
-            {% empty %}
-            hiç post yok
-            </div>
-         {% endfor %}
+
 
     <!-- POSTLARIN BİTİŞİ-->
 
 </div>
 
     {% include 'includes/logoutModal.html' %}
-
-
-
 
 {% endblock %}
