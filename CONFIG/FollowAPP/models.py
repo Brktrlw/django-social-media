@@ -11,9 +11,3 @@ class ModelFollow(models.Model):
 
     def __str__(self):
         return f"Takip Eden {self.following.username}-Takip Edilen {self.follower.username}"
-
-    def get_following_username(self):
-        return self.following.username
-
-    def get_follower_username(self):
-        return self.follower.username

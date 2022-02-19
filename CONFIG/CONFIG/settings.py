@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'PostAPP',
     'FollowAPP',
     'LikeAPP',
+    'notificationAPP',
     'UserAPP',
     'CommentAPP',
     #other app
