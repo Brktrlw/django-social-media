@@ -31,3 +31,4 @@ class DeletePostView(DeleteView):
     def get_queryset(self):
         post = ModelPost.objects.filter(user=self.request.user,slug=self.kwargs.get("slug"))
         return post
+

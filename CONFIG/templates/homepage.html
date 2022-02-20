@@ -1,7 +1,7 @@
 {% extends 'includes/base.html' %}
 {% load static %}
 {% block content %}
-
+{% load i18n %}
 <div class="container">
     {% if messages %}
     {% for message in messages %}
@@ -17,7 +17,7 @@
        {% include 'postshtml/sharePost.html' %}
          {% for post in posts %}
             <div class="deneme" style="display: inline;">
-            {% include 'postshtml/postwithImage.html' %}
+            {% include 'postshtml/post.html' %}
             {% empty %}
             <div class="card shadow mb-4">
                      <div class="card-header py-3">
@@ -33,14 +33,16 @@
        {% include 'postshtml/ananymousUserAlert.html' %}
    {% endif %}
 
-    <!-- POSTLARIN BASLANGICI-->
-
-
-
-    <!-- POSTLARIN BİTİŞİ-->
-
-</div>
+</div>{% trans "hello" %}
 
     {% include 'includes/logoutModal.html' %}
-
+<script>
+$.cookie('last-scroll-top', $(window).scrollTop());
+document.location.reload(true);
+var lastScrollTop = $.cookie('last-scroll-top');
+if (lastScrollTop) {
+    $(window).scrollTop(lastScrollTop);
+    $.removeCookie('last-scroll-top');
+}
+</script>
 {% endblock %}

@@ -20,7 +20,8 @@ class ModelPost(models.Model):
         verbose_name_plural = "Gönderiler"
 
     def getLikeCount(self):
-        pass
+        return self.likes.all().count()
+
     def getCommentCount(self):
         pass
 

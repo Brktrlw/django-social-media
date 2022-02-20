@@ -45,12 +45,16 @@
 	   <li><a><em class="mr-3">03</em></a></li>
 	  </ul>
 	  <ul>
-	   <li><a><i class="fa fa-thumbs-up"></i></a></li>
-	   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/3.jpeg" class="img-fluid rounded-circle" alt="User"></a></li>
-	   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/1.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
-	   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
-	   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/2.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
-	   <li><a><span>242 Likes</span></a></li>
+	   <li><a href=""><i class="fa fa-thumbs-up"></i></a></li>
+	    {% if post.getLikeCount == 0 %}
+	        <li><a><span>Beğeni Yok</span></a></li>
+            {% else %}
+                <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/3.jpeg" class="img-fluid rounded-circle" alt="User"></a></li>
+	            <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/1.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+	            <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+	            <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/2.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+                <li><a><span>{{ post.getLikeCount }} Beğeni</span></a></li>
+	    {% endif %}
 	  </ul>
 	 </div><!--/ cardbox-base -->
         <div class="cardbox-comments">
@@ -69,6 +73,4 @@
    </div><!--/ col-lg-3 -->
 
   </div><!--/ row -->
-
-
 

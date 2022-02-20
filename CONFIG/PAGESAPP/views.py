@@ -1,14 +1,26 @@
-from django.shortcuts import render
 from django.views import View
 from PostAPP.forms import FormPost
 from PostAPP.models import ModelPost
 from django.db.models import Q
+from django.shortcuts import render
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language,activate,gettext
+def page404(request,exception):
+    return render(request,"page404.html")
 
-
+def translate(language):
+    cur_language=get_language()
+    try:
+        activate(language)
+        text=_("merhaba")
+    finally:
+        activate(cur_language)
+    return text
 
 class ViewHomePage(View):
     # Ana sayfada kullanıcının takip ettiği kullanıcıların gönderilerini listeler
     http_method_names = ["get"]
+
     def get(self,request):
         if request.user.is_authenticated:
             myFollowings = request.user.followings.all().values_list('follower_id')

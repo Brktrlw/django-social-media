@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&-ph&)52z^i+n@re^^1sjfqq4q7vyku$q(e1qdr2^pb_71ho)9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -150,3 +151,10 @@ MESSAGE_TAGS = {
 }
 
 LOGOUT_REDIRECT_URL="/"
+
+
+LANGUAGS = [
+    ('en', 'English'),
+    ('tr', 'Turkish'),
+]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale/')]
