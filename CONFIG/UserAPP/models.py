@@ -12,7 +12,5 @@ class ModelUser(AbstractUser):
         verbose_name        = "Kullanıcı"
         verbose_name_plural = "Kullanıcılar"
 
-
-
     def __str__(self):
         return self.username
