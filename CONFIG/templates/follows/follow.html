@@ -1,7 +1,6 @@
 {% extends 'includes/base.html' %}
 {% block content %}
 <div class="container">
-
    <div class="card shadow mb-4">
       <div class="card-header py-3">
          <h6 class="m-0 font-weight-bold text-primary text-center">Takip Ettiklerim</h6>
@@ -25,14 +24,14 @@
                            </tr>
                         </thead>
                         <tbody>
-                        <!--Verilerin başlangıcı-->
+                           <!--Verilerin başlangıcı-->
                            {% for kullanici in users %}
                            <tr class="even">
                               <td class="sorting_1"><a class="btn btn-info btn-block">{{ kullanici|first }}</a></td>
                               <td><button class="btn btn-outline-danger btn-block"><i class="fas fa-trash"></i> Takipten Çıkart</button></td>
                            </tr>
                            {% endfor %}
-                         <!--Verilerin bitişi -->
+                           <!--Verilerin bitişi -->
                         </tbody>
                      </table>
                   </div>
@@ -44,14 +43,16 @@
                   <div class="col-sm-12 col-md-7">
                      <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                         <ul class="pagination">
-                           <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Önceki</a></li>
-                           <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                           <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                           <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                           <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                           <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                           <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                           <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Sonraki</a></li>
+                           <div class="pagination">
+                              {% if page_obj.has_previous %}
+                              <li class="paginate_button page-item next" id="dataTable_next"><a href="?page=1" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">İlk</a></li>
+                              <li class="paginate_button page-item next" id="dataTable_next"><a href="?page={{ page_obj.previous_page_number }}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Önceki</a></li>
+                              {% endif %}
+                              {% if page_obj.has_next %}
+                              <li class="paginate_button page-item next" id="dataTable_next"><a href="?page={{ page_obj.next_page_number }}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Sonraki</a></li>
+                              <li class="paginate_button page-item next" id="dataTable_next"><a href="?page={{ page_obj.paginator.num_pages }}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">En Son</a></li>
+                              {% endif %}
+                           </div>
                         </ul>
                      </div>
                   </div>

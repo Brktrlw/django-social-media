@@ -6,6 +6,7 @@ from PostAPP.models import ModelPost
 from django.views.generic import DeleteView
 from django.contrib import messages
 
+
 class CreatePostView(View):
     # Post oluşturma sayfası
     http_method_names = ["post"]
