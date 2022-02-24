@@ -11,3 +11,4 @@ class ModelCommentLike(models.Model):
 class ModelPostLike(models.Model):
     user   = models.ForeignKey(ModelUser,on_delete=models.CASCADE,verbose_name="Kullanıcı")
     post   = models.ForeignKey(ModelPost,on_delete=models.CASCADE,verbose_name="Gönderi",related_name="likes")
+

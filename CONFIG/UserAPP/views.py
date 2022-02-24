@@ -35,11 +35,8 @@ class RegisterView(View):
     def post(self,request):
         form = FormUserCreate(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
-            username=form.cleaned_data.get("username")
-            password=form.cleaned_data.get("password")
-            user=authenticate(username=username,password=password)
-            login(request,user)
+            user=form.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
             return redirect("url_homepage")
         else:
             for i in range(0,len(form.errors.values())):

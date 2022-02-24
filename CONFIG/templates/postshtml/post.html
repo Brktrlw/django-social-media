@@ -45,7 +45,7 @@
 	   <li><a><em class="mr-3">03</em></a></li>
 	  </ul>
 	  <ul>
-	   <li><a href=""><i class="fa fa-thumbs-up"></i></a></li>
+	   <li><a href="{% url 'url_likepost' post.slug %}"><i class="fa fa-thumbs-up"></i></a></li>
 	    {% if post.getLikeCount == 0 %}
 	        <li><a><span>Beğeni Yok</span></a></li>
             {% else %}

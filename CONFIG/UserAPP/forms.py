@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from UserAPP.models import ModelUser
 from django import forms
 class FormUserCreate(UserCreationForm):
+    first_name=forms.CharField(required=True)
     class Meta:
         model = ModelUser
         fields=(
