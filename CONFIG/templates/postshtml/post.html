@@ -48,22 +48,20 @@
             </ul>
             <ul>
                <li>
-                  <form action="{% url 'url_likepost' post.slug %}" method="POST" onsubmit="setTimeout(function(){window.location.reload();},10);">
                      {% csrf_token %}
                      {% if post.isLiked %}
-                     <button type="submit" class="btn btn-danger" id="btn_like" style="border-radius: 50px">
+                     <button  class="btn btn-danger" id="{{ post.slug }}" onclick="likePostFunc('{{ post.slug }}')"  style="border-radius: 50px">
                      <i class="fa fa-thumbs-up"></i>
                      </button>
                      {% else %}
-                     <button type="submit" class="btn btn-outline-danger" style="border-radius: 50px">
+                     <button class="btn btn-outline-danger" id="{{ post.slug }}" onclick="likePostFunc('{{ post.slug }}')" style="border-radius: 50px">
                      <i class="fa fa-thumbs-up"></i>
                      </button>{% endif %}
-                  </form>
                </li>
                {% if post.getLikeCount == 0 %}
-               <li><a><span>Beğeni Yok</span></a></li>
+               <li><a><span count="{{ post.getLikeCount }}" id="likecount-{{ post.slug }}">0 Beğeni</span></a></li>
                {% else %}
-               <li><a><span>{{ post.getLikeCount }} Beğeni</span></a></li>
+               <li><a><span count="{{ post.getLikeCount }}" id="likecount-{{ post.slug }}">{{ post.getLikeCount }} Beğeni</span></a></li>
                {% endif %}
             </ul>
          </div>

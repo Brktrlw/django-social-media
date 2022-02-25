@@ -1,12 +1,11 @@
 
 
 from django.urls import path
-from .views import CreateLikePostView
+from .views import CreatePostLikeView
 
 
 
 
 urlpatterns = [
-    path("likePost/<slug:slug>",CreateLikePostView.as_view(),name="url_likepost")
-
+    path("postlike/", CreatePostLikeView.as_view(), name="url_postlike"),
 ]

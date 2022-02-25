@@ -32,7 +32,7 @@
          </div>
       </li>
       <li class="nav-item dropdown no-arrow mx-1">
-         <a class="nav-link dropdown-toggle btn-read-notif" onclick="deneme();" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <a class="nav-link dropdown-toggle btn-read-notif" onclick="readNotifFunc();" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <i class="fas fa-bell fa-fw"></i>
              {% if notifCount != 0 %}
              <span class="badge badge-danger badge-counter" id="notifcount">{{ notifCount }}</span>
@@ -53,7 +53,7 @@
                </div>
                <div>
                   <div class="small text-gray-500">{{ notification.createdDate }}</div>
-                  <span class="font-weight-bold">{{ notification.content }}</span>
+                  <span class="font-weight notifContent" style="font-weight: bold">{{ notification.content }}</span>
                </div>
             </a>
 
