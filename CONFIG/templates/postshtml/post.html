@@ -1,81 +1,93 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-  <div class="row" >
+<div class="row" >
    <div class="col-lg-6 offset-lg-3">
-	<div class="cardbox shadow-lg bg-white" >
-	 <div class="cardbox-heading" >
-	  <div class="dropdown float-right" >
-          {% if post.user == user %}
-	   <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-		<em class="fa fa-ellipsis-h" ></em>
-	   </button>
-	   <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-		<a class="dropdown-item" href="{% url 'url_deletepost' post.slug %}">Gönderiyi Sil</a>
-	   </div>
-        {% endif %}
-	  </div><!--/ dropdown -->
-	  <div class="media m-0" >
-	   <div class="d-flex mr-3" >
-		<a href="user/{{ post.user.username }}">
-            {% if  post.user.profilePhoto %}
-               <img class="img-fluid rounded-circle" src="{{ post.user.profilePhoto.url }}" alt="User">
-            {% else %}
-               <img class="img-fluid rounded-circle" src="https://admin.universcitiz.com/images/default-pp.png" alt="User">
+      <div class="cardbox shadow-lg bg-white" >
+         <div class="cardbox-heading" >
+            <div class="dropdown float-right" >
+               {% if post.user == user %}
+               <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
+               <em class="fa fa-ellipsis-h" ></em>
+               </button>
+               <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                  <a class="dropdown-item" href="{% url 'url_deletepost' post.slug %}">Gönderiyi Sil</a>
+               </div>
+               {% endif %}
+            </div>
+            <!--/ dropdown -->
+            <div class="media m-0" >
+               <div class="d-flex mr-3" >
+                  <a href="user/{{ post.user.username }}">
+                  {% if  post.user.profilePhoto %}
+                  <img class="img-fluid rounded-circle" src="{{ post.user.profilePhoto.url }}" alt="User">
+                  {% else %}
+                  <img class="img-fluid rounded-circle" src="https://admin.universcitiz.com/images/default-pp.png" alt="User">
+                  {% endif %}
+                  </a>
+               </div>
+               <div class="media-body" >
+                  <p class="m-0"><a href="user/{{ post.user.username }}">{{ post.user.username }}</a></p>
+                  <small><i class="icon ion-md-pin"></i> {{ post.user.get_full_name|title }}</small>
+                  <small><i class="icon ion-md-time"></i>{{ post.createdDate|timesince }} önce</small>
+               </div>
+            </div>
+            <!--/ media -->
+         </div>
+         <!--/ cardbox-heading -->
+         <div class="p-2">{{ post.description }}</div>
+         <div class="cardbox-item" >
+            {% if post.image %}
+            <img class="img-fluid" src="{{ post.image.url }}" alt="Image">
             {% endif %}
-        </a>
-	   </div>
-	   <div class="media-body" >
-	    <p class="m-0"><a href="user/{{ post.user.username }}">{{ post.user.username }}</a></p>
-		<small><i class="icon ion-md-pin"></i> {{ post.user.get_full_name|title }}</small>
-		<small><i class="icon ion-md-time"></i>{{ post.createdDate|timesince }} önce</small>
-	   </div>
-	  </div><!--/ media -->
-	 </div><!--/ cardbox-heading -->
-        <div class="p-2">{{ post.description }}</div>
-	 <div class="cardbox-item" >
-         {% if post.image %}
-             <img class="img-fluid" src="{{ post.image.url }}" alt="Image">
-         {% endif %}
-	 </div><!--/ cardbox-item -->
-	 <div class="cardbox-base">
-	  <ul class="float-right">
-	   <li><a><i class="fa fa-comments"></i></a></li>
-	   <li><a><em class="mr-5">12</em></a></li>
-	   <li><a><i class="fa fa-share-alt"></i></a></li>
-	   <li><a><em class="mr-3">03</em></a></li>
-	  </ul>
-	  <ul>
-	   <li>
-           <form action="{% url 'url_likepost' post.slug %}" method="POST">
-               {% csrf_token %}
-              <button type="submit" class="btn btn-outline-danger" style="border-radius: 50px">
-                  <i class="fa fa-thumbs-up"></i>
-              </button>
-           </form>
-       </li>
-	    {% if post.getLikeCount == 0 %}
-	        <li><a><span>Beğeni Yok</span></a></li>
-            {% else %}
-                <li><a><span>{{ post.getLikeCount }} Beğeni</span></a></li>
-	    {% endif %}
-	  </ul>
-	 </div><!--/ cardbox-base -->
-        <div class="cardbox-comments">
-	  <span class="comment-avatar float-left">
-          {% if user.is_authenticated %}
-	   <a href=""><img class="rounded-circle" src="{{ user.profilePhoto.url }}" alt="..."></a>
-          {% endif %}
-	  </span>
-	  <div class="search">
-	   <input placeholder="Write a comment" type="text">
-	   <button><i class="fa fa-camera"></i></button>
-	  </div><!--/. Search -->
-	 </div><!--/ cardbox-like -->
+         </div>
+         <!--/ cardbox-item -->
+         <div class="cardbox-base">
+            <ul class="float-right">
+               <li><a><i class="fa fa-comments"></i></a></li>
+               <li><a><em class="mr-5">12</em></a></li>
+               <li><a><i class="fa fa-share-alt"></i></a></li>
+               <li><a><em class="mr-3">03</em></a></li>
+            </ul>
+            <ul>
+               <li>
+                  <form action="{% url 'url_likepost' post.slug %}" method="POST">
+                     {% csrf_token %}
 
-	</div><!--/ cardbox -->
-
-   </div><!--/ col-lg-6 -->
-   </div><!--/ col-lg-3 -->
-
-  </div><!--/ row -->
-
+                     {% if post.isLiked %}
+                     <button type="submit" class="btn btn-danger" style="border-radius: 50px">
+                     <i class="fa fa-thumbs-up"></i>
+                     </button>
+                     {% else %}
+                     <button type="submit" class="btn btn-outline-danger" style="border-radius: 50px">
+                     <i class="fa fa-thumbs-up"></i>
+                     </button>{% endif %}
+                  </form>
+               </li>
+               {% if post.getLikeCount == 0 %}
+               <li><a><span>Beğeni Yok{{ post.isLiked }}</span></a></li>
+               {% else %}
+               <li><a><span>{{ post.getLikeCount }} Beğeni</span></a></li>
+               {% endif %}
+            </ul>
+         </div>
+         <!--/ cardbox-base -->
+         <div class="cardbox-comments">
+            <span class="comment-avatar float-left">
+            {% if user.is_authenticated %}
+            <a href=""><img class="rounded-circle" src="{{ user.profilePhoto.url }}" alt="..."></a>
+            {% endif %}
+            </span>
+            <div class="search">
+               <input placeholder="Write a comment" type="text">
+               <button><i class="fa fa-camera"></i></button>
+            </div>
+            <!--/. Search -->
+         </div>
+         <!--/ cardbox-like -->
+      </div>
+      <!--/ cardbox -->
+   </div>
+   <!--/ col-lg-6 -->
+</div>
+<!--/ col-lg-3 -->
+</div><!--/ row -->

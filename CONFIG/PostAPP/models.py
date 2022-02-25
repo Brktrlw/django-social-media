@@ -1,11 +1,11 @@
 from django.db import models
 from UserAPP.models import ModelUser
 from django.utils.crypto import get_random_string
+from crum import get_current_request
+from django.apps import apps
 
 def create_new_ref_number():
     return str(get_random_string(30))
-
-
 
 class ModelPost(models.Model):
     user        = models.ForeignKey(ModelUser,on_delete=models.CASCADE,verbose_name="Kullanıcı",related_name="posts")
@@ -24,4 +24,12 @@ class ModelPost(models.Model):
 
     def getCommentCount(self):
         pass
+
+    @property
+    def isLiked(self):
+        user=get_current_request().user
+        return apps.get_model('LikeAPP',"ModelPostLike").objects.filter(user=user,post=self).exists()
+
+
+
 
