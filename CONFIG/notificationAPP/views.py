@@ -1,7 +1,15 @@
-from django.shortcuts import redirect,HttpResponse
+from django.shortcuts import HttpResponse,render
 from django.views.generic import View
 from notificationAPP.models import ModelNotification
 
+
+
+class ListNotificationView(View):
+    http_method_names = ["get"]
+    def get(self,request):
+        notifs=request.user.notifs.all().order_by("-createdDate")
+        print(notifs)
+        return render(request,"notifications.html",{"notifs":notifs})
 
 class ReadAllNotifView(View):
     http_method_names = ["post"]

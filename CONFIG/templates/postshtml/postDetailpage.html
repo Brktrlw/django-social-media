@@ -1,8 +1,23 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block content %}
+{% load i18n %}
+<div class="container">
+   {% if messages %}
+   {% for message in messages %}
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   {% endfor %}
+   {% endif %}
+</div>
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-
-<div class="row">
-   <div class="col-lg-6 offset-lg-3" >
+<div class="row" >
+   <div class="col-lg-6 offset-lg-3">
       <div class="cardbox shadow-lg bg-white" >
          <div class="cardbox-heading" >
             <div class="dropdown float-right" >
@@ -26,7 +41,7 @@
                   {% endif %}
                   </a>
                </div>
-               <div class="media-body">
+               <div class="media-body" >
                   <p class="m-0"><a href="user/{{ post.user.username }}">{{ post.user.username }}</a></p>
                   <small><i class="icon ion-md-pin"></i> {{ post.user.get_full_name|title }}</small>
                   <small><i class="icon ion-md-time"></i>{{ post.createdDate|timesince }} önce</small>
@@ -87,4 +102,6 @@
 </div>
 <!--/ col-lg-3 -->
 </div><!--/ row -->
-</a>
+
+{% include 'includes/logoutModal.html' %}
+{% endblock %}

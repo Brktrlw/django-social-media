@@ -1,9 +1,9 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect,get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from PostAPP.forms import FormPost
 from PostAPP.models import ModelPost
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView,DetailView
 from django.contrib import messages
 
 
@@ -32,4 +32,13 @@ class DeletePostView(DeleteView):
     def get_queryset(self):
         post = ModelPost.objects.filter(user=self.request.user,slug=self.kwargs.get("slug"))
         return post
+
+class PostDetailView(DetailView):
+    http_method_names = ["get"]
+    template_name = "postshtml/postDetailpage.html"
+    context_object_name = "post"
+
+    def get_queryset(self):
+        return ModelPost.objects.filter(slug=self.kwargs.get("slug"))
+
 

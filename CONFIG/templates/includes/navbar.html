@@ -34,32 +34,38 @@
       <li class="nav-item dropdown no-arrow mx-1">
          <a class="nav-link dropdown-toggle btn-read-notif" onclick="readNotifFunc();" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <i class="fas fa-bell fa-fw"></i>
-             {% if notifCount != 0 %}
-             <span class="badge badge-danger badge-counter" id="notifcount">{{ notifCount }}</span>
-             {% endif %}
-
-
+         {% if notifCount != 0 %}
+         <span class="badge badge-danger badge-counter" id="notifcount">{{ notifCount }}</span>
+         {% endif %}
          </a>
          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">
-               Bildirimler
-            </h6>
-                {% for notification in notifications %}
-            <a class="dropdown-item d-flex align-items-center" href="" >
-               <div class="mr-3">
-                  <div class="icon-circle bg-danger">
-                     <i class="fas fa-heart text-white"></i>
+         <h6 class="dropdown-header">
+            Bildirimler
+         </h6>
+         {% for notification in notifications %}
+         <a class="dropdown-item d-flex align-items-center" href="" >
+            <div class="mr-3">
+               {% if notification.kind == "3" %}
+               <div class="icon-circle bg-danger">
+                  <i class="fas fa-heart text-white"></i>
+                  {% elif notification.kind == "1" %}
+                  <div class="icon-circle bg-primary">
+                     <i class="fas fa-user-plus text-white"></i>
+                     {% endif %}
                   </div>
                </div>
                <div>
                   <div class="small text-gray-500">{{ notification.createdDate }}</div>
                   <span class="font-weight notifContent" style="font-weight: bold">{{ notification.content }}</span>
                </div>
-            </a>
-
-             {% endfor %}
-
-            <a class="dropdown-item text-center small text-gray-500" href="#">Tüm Bildirimleri Göster</a>
+               {% if notification.kind == "3" and notification.post.image %}
+               <div class="mr-1">
+                  <img src="{{ notification.post.image.url }}" class="icon-circle bg-primary">
+               </div>
+               {% endif %}
+         </a>
+         {% endfor %}
+         <a class="dropdown-item text-center small text-gray-500" href="{% url 'url_listnotification' %}">Tüm Bildirimleri Göster</a>
          </div>
       </li>
       <li class="nav-item dropdown no-arrow mx-1">
