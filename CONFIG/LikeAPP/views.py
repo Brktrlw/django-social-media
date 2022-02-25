@@ -1,13 +1,16 @@
-from django.shortcuts import render
 from django.views.generic import CreateView
-from .forms import LikePostForm
+from LikeAPP.models import ModelPostLike
 from PostAPP.models import ModelPost
+from django.shortcuts import redirect
+
 
 class CreateLikePostView(CreateView):
+    template_name = "homepage.html"
     http_method_names = ["post"]
-    form_class = LikePostForm
-    model = ModelPost
+    model = ModelPostLike
+    queryset = ModelPostLike.objects.all()
 
-    def form_valid(self, form):
-        print(form)
-
+    def post(self, request, *args, **kwargs):
+        post=ModelPost.objects.get(slug=self.kwargs.get("slug"))
+        ModelPostLike.objects.create(user=request.user,post=post)
+        return redirect("url_homepage")

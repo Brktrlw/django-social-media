@@ -7,6 +7,6 @@ from .views import CreateLikePostView
 
 
 urlpatterns = [
-    path("likePost/<slug>",CreateLikePostView.as_view(),name="url_likepost")
+    path("likePost/<slug:slug>",CreateLikePostView.as_view(),name="url_likepost")
 
 ]

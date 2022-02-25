@@ -5,11 +5,14 @@ from UserAPP.models import ModelUser
 def createNewUniqueID():
     return str(get_random_string(30))
 
+
+
 class ModelComment(models.Model):
-    user        = models.ForeignKey(ModelUser,on_delete=models.CASCADE,verbose_name="Kullanıcı")
-    text        = models.CharField(max_length=200,verbose_name="Yorum İçeriği")
-    createdDate = models.DateTimeField(auto_now_add=True)
-    unique_id   = models.CharField(default=createNewUniqueID,editable=False,unique=True,max_length=30)
+    user             = models.ForeignKey(ModelUser,on_delete=models.CASCADE,verbose_name="Kullanıcı")
+    text             = models.CharField(max_length=200,verbose_name="Yorum İçeriği")
+    createdDate      = models.DateTimeField(auto_now_add=True)
+    unique_id        = models.CharField(default=createNewUniqueID,editable=False,unique=True,max_length=30)
+
 
     class Meta:
         db_table = "Comments"
