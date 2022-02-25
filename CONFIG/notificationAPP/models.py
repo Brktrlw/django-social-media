@@ -1,6 +1,6 @@
 from django.db import models
 from UserAPP.models import ModelUser
-
+from PostAPP.models import ModelPost
 class ModelNotification(models.Model):
     NOTIFICATION_TYPE = (
         ("1", "Takip"),
@@ -13,3 +13,4 @@ class ModelNotification(models.Model):
     senderUser   = models.ForeignKey(ModelUser,on_delete=models.CASCADE,verbose_name="Gönderen Kullanıcı")
     createdDate  = models.DateTimeField(auto_now_add=True)
     kind         = models.CharField(choices=NOTIFICATION_TYPE,max_length=7)
+    post         = models.ForeignKey(ModelPost,on_delete=models.CASCADE,verbose_name="Post",null=True,blank=True)

@@ -23,7 +23,7 @@ class ModelPost(models.Model):
         return self.likes.all().count()
 
     def getCommentCount(self):
-        pass
+        return self.comments.all().count()
 
     @property
     def isLiked(self):

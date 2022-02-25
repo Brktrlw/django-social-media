@@ -44,17 +44,14 @@
          <div class="cardbox-base">
             <ul class="float-right">
                <li><a><i class="fa fa-comments"></i></a></li>
-               <li><a><em class="mr-5">12</em></a></li>
-               <li><a><i class="fa fa-share-alt"></i></a></li>
-               <li><a><em class="mr-3">03</em></a></li>
+               <li><a><em class="mr-5"> {{ post.getCommentCount }}</em></a></li>
             </ul>
             <ul>
                <li>
-                  <form action="{% url 'url_likepost' post.slug %}" method="POST">
+                  <form action="{% url 'url_likepost' post.slug %}" method="POST" onsubmit="setTimeout(function(){window.location.reload();},10);">
                      {% csrf_token %}
-
                      {% if post.isLiked %}
-                     <button type="submit" class="btn btn-danger" style="border-radius: 50px">
+                     <button type="submit" class="btn btn-danger" id="btn_like" style="border-radius: 50px">
                      <i class="fa fa-thumbs-up"></i>
                      </button>
                      {% else %}
@@ -64,7 +61,7 @@
                   </form>
                </li>
                {% if post.getLikeCount == 0 %}
-               <li><a><span>Beğeni Yok{{ post.isLiked }}</span></a></li>
+               <li><a><span>Beğeni Yok</span></a></li>
                {% else %}
                <li><a><span>{{ post.getLikeCount }} Beğeni</span></a></li>
                {% endif %}
