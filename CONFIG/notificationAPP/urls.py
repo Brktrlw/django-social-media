@@ -1,7 +1,8 @@
 
 
 from django.urls import path
-from .views import CreateLikePostView
+from .views import ReadAllNotifView
+
 urlpatterns = [
-    path("post/<slug>",CreateLikePostView.as_view(),name="url_likepost")
+    path("readallnotif/",ReadAllNotifView.as_view(),name="url_readallnotif")
 ]

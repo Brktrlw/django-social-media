@@ -15,6 +15,7 @@ urlpatterns = [
     path("post/",include("PostAPP.urls")),
     path("follows/",include("FollowAPP.urls")),
     path("like/",include("LikeAPP.urls")),
+    path("notification/",include("notificationAPP.urls"))
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 handler404 = 'PAGESAPP.views.page404'

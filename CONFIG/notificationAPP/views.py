@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.shortcuts import redirect,HttpResponse
+from django.views.generic import View
+from notificationAPP.models import ModelNotification
 
 
+class ReadAllNotifView(View):
+    http_method_names = ["post"]
 
-class CreateLikePostView(CreateView):
-    pass
-
+    def post(self,request):
+        ModelNotification.objects.filter(receiverUser=request.user).update(isRead=True)
+        return HttpResponse(status=201)
