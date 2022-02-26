@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class ModelUser(AbstractUser):
-    profilePhoto = models.ImageField(upload_to="ProfilePhotos", blank=True, null=True)
+    profilePhoto = models.ImageField(upload_to="ProfilePhotos", blank=False, null=True)
     biography    = models.CharField(verbose_name="Biyogrofi",blank=True,null=True,max_length=150,default="ProfilePhotos/default.webp")
 
     class Meta:

@@ -20,16 +20,16 @@
    </h6>
    {% for notif in notifs %}
    <div class="card mb-1">
-   {% if notif.kind == "3" %}
-             <a class="dropdown-item d-flex align-items-center" href="{% url 'url_postdetail' notif.post.slug %}">
-    {% elif notif.kind == "1" %}
-         <a class="dropdown-item d-flex align-items-center" href="#kullanicisayfasi">
-    {% endif %}
+      {% if notif.kind == "3" %}
+      <a class="dropdown-item d-flex align-items-center" href="{% url 'url_postdetail' notif.post.slug %}">
+      {% elif notif.kind == "1" %}
+      <a class="dropdown-item d-flex align-items-center" href="#kullanicisayfasi">
+         {% endif %}
          <div class="mr-3">
             {% if notif.kind == "3" %}
             <div class="icon-circle bg-danger">
                {% if notif.kind == "3" and notif.post.image %}
-                  <img src="{{ notif.post.image.url }}" class="icon-circle bg-primary">
+               <img src="{{ notif.post.image.url }}" class="icon-circle bg-primary">
                {% else %}
                <i class="fas fa-heart text-white"></i>
                {% endif %}
@@ -43,6 +43,7 @@
                <div class="small text-gray-500">{{ notif.createdDate }}</div>
                <span class="font-weight notifContent" style="">{{ notif.content }}</span>
             </div>
+      </a>
       </a>
       </div>
       {% endfor %}
